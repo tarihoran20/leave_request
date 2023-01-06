@@ -23,7 +23,24 @@
                         <td th:text="${division.Id}"></td>
                         <td th:text="${division.Name}"></td>
                         <td th:text="${division.region.name}"></td>
-                        <td>Edit | Delete</td>
+                        <td>
+                            <a
+                                class= "btn btn-warning"
+                                th:href="@{/division/form/{Id}(Id=${division.Id})}"
+                                >
+                                Edit
+                            </a>
+                        </td>
+                        <td>
+                            <form th:action="@{/division/delete/{Id}(Id=${division.Id})}" th:method="post">
+                                <button type="submit" class="btn btn-danger">
+                                    
+                                    Delete
+                                </button>
+                            </form>
+                          
+                                  
+                        </td>
 
                     </tr>
                 </tbody>

@@ -10,20 +10,47 @@
                 th:object="${division}"
                 >
                     <div class="form-group" hidden>
-                        <label for="DivisionId" class="col-form-label">Division Id</label>
+                        <label for="Id" class="col-form-label">Division Id</label>
                         <input 
                             type="text"
                             class="form-control"
                             id="divisionId"
-                            th:field="*{divisionId}">
+                            th:field="*{Id}">
                     </div>
                     <div class="form-group">
-                        <label for="divisionName" class="col-form-label">Division Name</label>
+                        <label for="Name" class="col-form-label">Division Name</label>
                         <input
                             type="text"
                             class="form-control"
-                            id="divisionName"
-                            th:field="*{divisionName}">
+                            id="Name"
+                            th:field="*{Name}">
+                    </div>
+                    <div class="form-group">
+                        <label for="Name" class="col-form-label">Region Id</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="Id"
+                            th:field="*{Id}">
+                    </div>
+                    <div>
+                        <!-- <%
+                            try {
+                                Class.forName("com.mysql.cj.jdbc.Driver");
+                                Statement st = con.createStatement();
+                                String query = "Select*from tb_m_regions";
+                                ResultSet rs = st.executrQuery(query);
+
+                                while(rs.next()){
+                                    %>
+                                    <option><%=rs.getString("name")%></option>
+                                    <%
+                                }
+                            
+                            } catch (Exception e) {
+
+                            }
+                        %> -->
                     </div>
                     <button type="submit" class="btn btn-primary">
                         Save

@@ -16,21 +16,31 @@ public class Division {
     @Id
     @Column(name = "divisionId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer divisionId;
-    @Column(name = "regionName", nullable = false)    
-    private String divisionName;
+    private Integer DivisionId;
+
+    @Column(name = "divisionName", nullable = false)    
+    private String DivisionName;
+
+    @Column(name = "regionName", nullable = false)
+    private String RegionName;
 
     public Integer getDivisionId() {
-        return divisionId;
+        return DivisionId;
     }
     public void setDivisionId(Integer divisionId) {
-        this.divisionId = divisionId;
+        DivisionId = divisionId;
     }
     public String getDivisionName() {
-        return divisionName;
+        return DivisionName;
     }
     public void setDivisionName(String divisionName) {
-        this.divisionName = divisionName;
+        DivisionName = divisionName;
+    }
+    public String getRegionName(){
+        return RegionName;
+    }
+    public void setRegionName(String regionName){
+        RegionName = regionName;
     }
     
     // @OneToMany(mappedBy = "division")

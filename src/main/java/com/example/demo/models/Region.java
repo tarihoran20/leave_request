@@ -2,35 +2,31 @@ package com.example.demo.models;
 
 import javax.persistence.*;
 
-
-
 @Entity
 @Table(name = "tb_m_regions")
 public class Region {
     @Id
     @Column(name = "regionId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer regionId;
+    private Integer RegionId;
 
-    
     @Column(name = "regionName", nullable = false)
-    private String regionName;
+    private String RegionName;
 
-
-    public void setRegionId(int regionId){
-        this.regionId = regionId;
+    public void setRegionId(Integer regionId){
+        RegionId = regionId;
     }
 
-    public int getRegionId(){
-        return regionId;
+    public Integer getRegionId(){
+        return RegionId;
     }
 
     public void setRegionName(String regionName){
-        this.regionName = regionName;
+        RegionName = regionName;
     }
 
     public String getRegionName(){
-        return regionName;
+        return RegionName;
     }
 
     // @OneToMany(mappedBy = "region")

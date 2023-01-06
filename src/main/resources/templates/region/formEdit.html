@@ -6,12 +6,13 @@
         
         <div class="container">
             <form
-                th:action = "@{/region/save}"
+                th:action = "@{/region/update}"
                 method = "post"
-                th:object="${region}"
+                th:object="${regions}"
                 
             >
-                <div class="form-group" hidden>
+                <div class="form-group" hidden 
+                >
                     <label for="RegionId" class="col-form-label">Region Id</label>
                     <input 
                         type="text"
@@ -23,10 +24,13 @@
                     <label for="regionName" class="col-form-label">Region Name</label>
                     <input 
                         type="text"
+                        
                         class="form-control" id="regionName" 
-                        th:field="*{regionName}"/>
+                        th:field="*{regionName}"
+                        
+                        />
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Update</button>
 
             </form>
         </div>

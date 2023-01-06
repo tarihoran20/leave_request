@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <a 
+            class = "btn btn-primary"
+            style="margin-bottom: 10px; margin-top: 10px; color:aquamarine;"
+            th:href="@{/division/form}">
+            Create New Division
+            </a>
+            
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Division</th>
+                    <th>Region</th>
+                    <th>Action</th>
+                </tr>
+                <tbody>
+                    <tr th:each="division : ${divisions}">
+                        <td th:text="${division.divisionId}"></td>
+                        <td th:text="${division.divisionName}"></td>
+                        <td th:text="${division.regionName}"></td>
+                        <td>Edit | Delete</td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </body>
+</html>

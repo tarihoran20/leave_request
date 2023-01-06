@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import com.example.demo.models.Division;
+import com.example.demo.models.Region;
 
 public class DivisionDAO {
     private Connection connection;
@@ -16,7 +17,7 @@ public class DivisionDAO {
 
     public List<Division> getAll(){
         List<Division> divisions = new ArrayList<>();
-        String query = "SELECT * FROM tb_m_divisions";
+        String query = "SELECT d.divisionId, d.divisionName, r.regionName FROM tb_m_divisions d JOIN tb_m_regions r on d.regionId = r.regionId";
         try{
             ResultSet resultSet = connection
                         .prepareStatement(query)
@@ -26,6 +27,7 @@ public class DivisionDAO {
                 Division division = new Division();
                 division.setDivisionId(resultSet.getInt(1));
                 division.setDivisionName(resultSet.getString(2));
+                division.setRegionName(resultSet.getString(3));
                 divisions.add(division);
             }
         } catch (SQLException e) {
@@ -78,6 +80,24 @@ public class DivisionDAO {
         }
 
         return false;
+    }
+
+    public Division getById(Integer divisionId) {
+        Division region = new Division();
+        String query = "SELECT * FROM tb_m_divisions WHERE divisionId = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, divisionId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                region.setDivisionId(resultSet.getInt(1));
+                region.setDivisionName(resultSet.getString(2));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return region;
     }
     
 }

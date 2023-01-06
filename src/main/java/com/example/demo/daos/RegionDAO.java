@@ -39,9 +39,9 @@ public class RegionDAO {
     public Boolean insert (Region region){
         try {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO REGIONS (region_id, region_name) VALUES(?, ?)");
-            preparedStatement.setInt(1, region.getRegionId());
-            preparedStatement.setString(2, region.getRegionName());
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO tb_m_regions (regionName) VALUES(?)");
+            //preparedStatement.setInt(1, region.getRegionId());
+            preparedStatement.setString(1, region.getRegionName());
             //preparedStatement.execute();
             int temp = preparedStatement.executeUpdate();
 
@@ -55,10 +55,10 @@ public class RegionDAO {
 
     }
 
-    public boolean delete(Region region) {
+    public boolean delete(Integer regionId) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM REGIONS WHERE region_id = ?");
-            preparedStatement.setInt(1, region.getRegionId());
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM tb_m_regions WHERE regionId = ?");
+            preparedStatement.setInt(1, regionId);
             //preparedStatement.execute();
             int temp = preparedStatement.executeUpdate();
 
@@ -69,9 +69,10 @@ public class RegionDAO {
 
         return false;
     }
+
     public boolean update(Region region) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE REGIONS SET region_name = ? WHERE region_id = ? ");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE tb_m_regions SET regionName = ? WHERE regionId = ? ");
             preparedStatement.setString(1, region.getRegionName());
             preparedStatement.setInt(2, region.getRegionId());
             //preparedStatement.execute();
@@ -84,4 +85,40 @@ public class RegionDAO {
 
         return false;
     }
+
+    // public Region getById(int regionId) {
+    //     Region region = new Region();
+    //     String query = "SELECT * FROM tb_m_regions WHERE regionId = " + regionId;
+    //     try{
+    //         ResultSet resultSet = connection
+    //                     .prepareStatement(query)
+    //                     .executeQuery();
+
+    //         while (resultSet.next()) {
+    //             region.setRegionId(resultSet.getInt(1));
+    //             region.setRegionName(resultSet.getString(2));
+    //         }
+    //     } catch (SQLException e) {
+    //         e.printStackTrace();
+    //     }
+    //     return region;
+    // }
+    public Region getById(Integer regionId) {
+        Region region = new Region();
+        String query = "SELECT * FROM tb_m_regions WHERE regionId = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, regionId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                region.setRegionId(resultSet.getInt(1));
+                region.setRegionName(resultSet.getString(2));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return region;
+    }
+
 }

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.*;
 import com.example.demo.models.Division;
 import com.example.demo.models.Region;
+import java.sql.Statement;
 
 public class DivisionDAO {
     private Connection connection;
@@ -17,19 +18,22 @@ public class DivisionDAO {
 
     public List<Division> getAll(){
         List<Division> divisions = new ArrayList<>();
+        List<Region> regions = new ArrayList<>();
         String query = "SELECT d.id, d.name, r.name FROM tb_m_divisions d JOIN tb_m_regions r on d.regionId = r.id";
         try{
             ResultSet resultSet = connection
                         .prepareStatement(query)
                         .executeQuery();
 
+            
+
             while (resultSet.next()) {
                 Division division = new Division();
                 Region region = new Region();
                 division.setId(resultSet.getInt(1));
                 division.setName(resultSet.getString(2));
-                
-                division.setRegion(resultSet.getObject(region.getName()));
+                region.setName(resultSet.getString(3));
+                division.setRegion(region);
 
                 //division.setRegionName(resultSet.getString(3));
                 divisions.add(division);

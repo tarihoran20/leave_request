@@ -22,7 +22,7 @@
                     <tr th:each="division : ${divisions}">
                         <td th:text="${division.Id}"></td>
                         <td th:text="${division.Name}"></td>
-                        <td th:text="${division.Region}"></td>
+                        <td th:text="${division.region.name}"></td>
                         <td>Edit | Delete</td>
 
                     </tr>

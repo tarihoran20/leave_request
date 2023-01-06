@@ -51,7 +51,7 @@ public class RegionController {
     public String save(Region region){
         Boolean result;
         
-        if (region.getRegionId() == null) {
+        if (region.getId() == null) {
             result = rdao.insert(region);
         } else {
             result = rdao.update(region);
@@ -87,9 +87,9 @@ public class RegionController {
     //     }
     // }
 
-    @PostMapping(value = {"delete/{regionId}"}) //DELETE USING POST MAPPING
-    public String delete(@PathVariable int regionId){
-        Boolean result = rdao.delete(regionId);
+    @PostMapping(value = {"delete/{Id}"}) //DELETE USING POST MAPPING
+    public String delete(@PathVariable int Id){
+        Boolean result = rdao.delete(Id);
 
         if(result){
             return "redirect:/region";
@@ -120,10 +120,10 @@ public class RegionController {
     //     }
     // }
 
-    @GetMapping(value = {"form", "form/{regionId}"}) //GET FOR INSERT AND EDIT GET BY ID TO SAME FORM
-    public String getById(@PathVariable(required = false) Integer regionId, Model model){
-        if (regionId != null) {
-            model.addAttribute("region", rdao.getById(regionId));
+    @GetMapping(value = {"form", "form/{Id}"}) //GET FOR INSERT AND EDIT GET BY ID TO SAME FORM
+    public String getById(@PathVariable(required = false) Integer Id, Model model){
+        if (Id != null) {
+            model.addAttribute("region", rdao.getById(Id));
         } else {
             model.addAttribute("region", new Region());
         }

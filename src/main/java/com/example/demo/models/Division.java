@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.*;
@@ -14,36 +16,38 @@ import java.util.*;
 public class Division {
 
     @Id
-    @Column(name = "divisionId")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer DivisionId;
+    private Integer Id;
 
-    @Column(name = "divisionName", nullable = false)    
-    private String DivisionName;
+    @Column(name = "name", nullable = false)    
+    private String Name;
 
-    @Column(name = "regionName", nullable = false)
-    private String RegionName;
+    @ManyToOne
+    @JoinColumn(name = "regionId")
+    private Region Region;
 
-    public Integer getDivisionId() {
-        return DivisionId;
+
+    public Integer getId() {
+        return Id;
     }
-    public void setDivisionId(Integer divisionId) {
-        DivisionId = divisionId;
+    public void setId(Integer id) {
+        Id = id;
     }
-    public String getDivisionName() {
-        return DivisionName;
+    public String getName() {
+        return Name;
     }
-    public void setDivisionName(String divisionName) {
-        DivisionName = divisionName;
-    }
-    public String getRegionName(){
-        return RegionName;
-    }
-    public void setRegionName(String regionName){
-        RegionName = regionName;
+    public void setName(String name) {
+        Name = name;
     }
     
-    // @OneToMany(mappedBy = "division")
-    // Set<RegionDivision> regdiv;
+    public void setRegion(Region region) {
+        Region = region;
+    }
+
+    public Region getRegion() {
+        return Region;
+    }
+    
     
 }

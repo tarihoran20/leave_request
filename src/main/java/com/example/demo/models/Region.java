@@ -6,27 +6,27 @@ import javax.persistence.*;
 @Table(name = "tb_m_regions")
 public class Region {
     @Id
-    @Column(name = "regionId")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer RegionId;
+    private Integer Id;
 
-    @Column(name = "regionName", nullable = false)
-    private String RegionName;
+    @Column(name = "name", nullable = false)
+    private String Name;
 
-    public void setRegionId(Integer regionId){
-        RegionId = regionId;
+    public void setId(Integer id){
+        Id = id;
     }
 
-    public Integer getRegionId(){
-        return RegionId;
+    public Integer getId(){
+        return Id;
     }
 
-    public void setRegionName(String regionName){
-        RegionName = regionName;
+    public void setName(String name){
+        Name = name;
     }
 
-    public String getRegionName(){
-        return RegionName;
+    public String getName(){
+        return Name;
     }
 
     // @OneToMany(mappedBy = "region")

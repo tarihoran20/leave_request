@@ -25,8 +25,8 @@ public class RegionDAO {
 
             while (resultSet.next()) {
                 Region region = new Region();
-                region.setRegionId(resultSet.getInt(1));
-                region.setRegionName(resultSet.getString(2));
+                region.setId(resultSet.getInt(1));
+                region.setName(resultSet.getString(2));
                 regions.add(region);
             }
         } catch (SQLException e) {
@@ -39,9 +39,9 @@ public class RegionDAO {
     public Boolean insert (Region region){
         try {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO tb_m_regions (regionName) VALUES(?)");
-            //preparedStatement.setInt(1, region.getRegionId());
-            preparedStatement.setString(1, region.getRegionName());
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO tb_m_regions (name) VALUES(?)");
+            //preparedStatement.setInt(1, region.getId());
+            preparedStatement.setString(1, region.getName());
             //preparedStatement.execute();
             int temp = preparedStatement.executeUpdate();
 
@@ -55,10 +55,10 @@ public class RegionDAO {
 
     }
 
-    public boolean delete(Integer regionId) {
+    public boolean delete(Integer Id) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM tb_m_regions WHERE regionId = ?");
-            preparedStatement.setInt(1, regionId);
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM tb_m_regions WHERE id = ?");
+            preparedStatement.setInt(1, Id);
             //preparedStatement.execute();
             int temp = preparedStatement.executeUpdate();
 
@@ -72,9 +72,9 @@ public class RegionDAO {
 
     public boolean update(Region region) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE tb_m_regions SET regionName = ? WHERE regionId = ? ");
-            preparedStatement.setString(1, region.getRegionName());
-            preparedStatement.setInt(2, region.getRegionId());
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE tb_m_regions SET name = ? WHERE id = ? ");
+            preparedStatement.setString(1, region.getName());
+            preparedStatement.setInt(2, region.getId());
             //preparedStatement.execute();
             int temp = preparedStatement.executeUpdate();
 
@@ -103,17 +103,17 @@ public class RegionDAO {
     //     }
     //     return region;
     // }
-    public Region getById(Integer regionId) {
+    public Region getById(Integer Id) {
         Region region = new Region();
-        String query = "SELECT * FROM tb_m_regions WHERE regionId = ?";
+        String query = "SELECT * FROM tb_m_regions WHERE id = ?";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, regionId);
+            preparedStatement.setInt(1, Id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                region.setRegionId(resultSet.getInt(1));
-                region.setRegionName(resultSet.getString(2));
+                region.setId(resultSet.getInt(1));
+                region.setName(resultSet.getString(2));
             }
         } catch (SQLException e) {
             e.printStackTrace();

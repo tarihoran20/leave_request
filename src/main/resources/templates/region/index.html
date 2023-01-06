@@ -21,12 +21,12 @@
                 </tr>
                 <tbody>
                     <tr th:each="region : ${regions}">
-                        <td th:text="${region.regionId}"></td>
-                        <td th:text="${region.regionName}"></td>
+                        <td th:text="${region.Id}"></td>
+                        <td th:text="${region.Name}"></td>
                         <td>
                             <a
                                 class= "btn btn-warning"
-                                th:href="@{/region/form/{regionId}(regionId=${region.regionId})}"
+                                th:href="@{/region/form/{Id}(Id=${region.Id})}"
                                 >
                                 Edit
                             </a>
@@ -38,7 +38,7 @@
                             </a> -->
                         </td>
                         <td>
-                            <form th:action="@{/region/delete/{regionId}(regionId=${region.regionId})}" th:method="post">
+                            <form th:action="@{/region/delete/{Id}(Id=${region.Id})}" th:method="post">
                                 <button type="submit" class="btn btn-danger">
                                     
                                     Delete

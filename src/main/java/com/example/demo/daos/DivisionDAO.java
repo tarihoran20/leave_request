@@ -17,7 +17,7 @@ public class DivisionDAO {
 
     public List<Division> getAll(){
         List<Division> divisions = new ArrayList<>();
-        String query = "SELECT d.divisionId, d.divisionName, r.regionName FROM tb_m_divisions d JOIN tb_m_regions r on d.regionId = r.regionId";
+        String query = "SELECT d.id, d.name, r.name FROM tb_m_divisions d JOIN tb_m_regions r on d.regionId = r.id";
         try{
             ResultSet resultSet = connection
                         .prepareStatement(query)
@@ -25,9 +25,13 @@ public class DivisionDAO {
 
             while (resultSet.next()) {
                 Division division = new Division();
-                division.setDivisionId(resultSet.getInt(1));
-                division.setDivisionName(resultSet.getString(2));
-                division.setRegionName(resultSet.getString(3));
+                Region region = new Region();
+                division.setId(resultSet.getInt(1));
+                division.setName(resultSet.getString(2));
+                
+                division.setRegion(resultSet.getObject(region.getName()));
+
+                //division.setRegionName(resultSet.getString(3));
                 divisions.add(division);
             }
         } catch (SQLException e) {
@@ -41,8 +45,8 @@ public class DivisionDAO {
         try {
 
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO DIVISIONS (region_id, region_name) VALUES(?, ?)");
-            preparedStatement.setInt(1, division.getDivisionId());
-            preparedStatement.setString(2, division.getDivisionName());
+            preparedStatement.setInt(1, division.getId());
+            preparedStatement.setString(2, division.getName());
             int temp = preparedStatement.executeUpdate();
 
             return temp > 0;
@@ -57,7 +61,7 @@ public class DivisionDAO {
     public boolean delete(Division division) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM DIVISIONS WHERE division_id = ?");
-            preparedStatement.setInt(1, division.getDivisionId());
+            preparedStatement.setInt(1, division.getId());
             //preparedStatement.execute();
             int temp = preparedStatement.executeUpdate();
             return temp > 0;
@@ -70,8 +74,8 @@ public class DivisionDAO {
     public boolean update(Division division) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE DIVISIONS SET division_name = ? WHERE division_id = ? ");
-            preparedStatement.setString(1, division.getDivisionName());
-            preparedStatement.setInt(2, division.getDivisionId());
+            preparedStatement.setString(1, division.getName());
+            preparedStatement.setInt(2, division.getId());
             int temp = preparedStatement.executeUpdate();
 
             return temp > 0;
@@ -91,8 +95,8 @@ public class DivisionDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                region.setDivisionId(resultSet.getInt(1));
-                region.setDivisionName(resultSet.getString(2));
+                region.setId(resultSet.getInt(1));
+                region.setName(resultSet.getString(2));
             }
         } catch (SQLException e) {
             e.printStackTrace();

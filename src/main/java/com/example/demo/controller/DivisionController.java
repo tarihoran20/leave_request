@@ -24,31 +24,24 @@ public class DivisionController {
         return "division/index";
     }
 
-    // @GetMapping
-    // public boolean insertDivision(Model model) {
-    //     model.addAttribute("divisions", ddao.insert(null));
-    //     return true;
-    // }
-    @GetMapping(value = {"form", "form/{Id}"}) //GET FOR INSERT AND EDIT GET BY ID TO SAME FORM
-    public String getById(@PathVariable(required = false) Integer Id, Model model){
-        if (Id != null) {
-            model.addAttribute("division", ddao.getById(Id));
+    @GetMapping(value = {"form", "form/{id}"}) //GET FOR INSERT AND EDIT GET BY ID TO SAME FORM
+    public String form(@PathVariable(required = false) Integer id, Model model){
+        if (id != null) {
+            model.addAttribute("division", ddao.getById(id));
+            model.addAttribute("regions", ddao.getAllRegion());
         } else {
             Division division = new Division();
-            Region region = new Region();
-            division.setName("Distribution");
-            region.setId(27);
-            
-            model.addAttribute("division", region.getId());
+
             model.addAttribute("division", new Division());
+            model.addAttribute("regions", ddao.getAllRegion());
         }
 
         return "division/form";
     }
 
-    @PostMapping(value = {"delete/{Id}"}) //DELETE USING POST MAPPING
-    public String delete(@PathVariable int Id){
-        Boolean result = ddao.delete(Id);
+    @PostMapping(value = {"delete/{id}"}) //DELETE USING POST MAPPING
+    public String delete(@PathVariable Integer id){
+        Boolean result = ddao.delete(id);
 
         if(result){
             return "redirect:/division";
@@ -58,11 +51,11 @@ public class DivisionController {
     }
 
     @PostMapping("save") // POST FOR INSERT AND UPDATE
-    public String save(Division division, Region region){
+    public String save(Division division){
         Boolean result;
         
         if (division.getId() == null) {
-            result = ddao.insert(division, region);
+            result = ddao.insert(division);
         } else {
             result = ddao.update(division);
         }
@@ -70,7 +63,7 @@ public class DivisionController {
         if(result){
             return "redirect:/division";
         } else {
-            return "region/form";
+            return "division/form";
         }
     }
     

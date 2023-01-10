@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.*;
 import com.example.demo.models.Division;
 import com.example.demo.models.Region;
-import java.sql.Statement;
 
 public class DivisionDAO {
     private Connection connection;
@@ -19,13 +18,11 @@ public class DivisionDAO {
     public List<Division> getAll(){
         List<Division> divisions = new ArrayList<>();
 
-        String query = "SELECT d.id, d.name, r.name FROM tb_m_divisions d JOIN tb_m_regions r on d.regionId = r.id";
+        String query = "SELECT d.id, d.name, r.name FROM tb_m_divisions d JOIN tb_m_regions r on d.regionId = r.id ORDER BY d.id ASC" ;
         try{
             ResultSet resultSet = connection
                         .prepareStatement(query)
-                        .executeQuery();
-
-            
+                        .executeQuery();           
 
             while (resultSet.next()) {
                 Division division = new Division();
@@ -45,13 +42,14 @@ public class DivisionDAO {
 
     }
 
-    public boolean insert(Division division, Region region){
+    public boolean insert(Division division){
         try {
 
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO tb_m_divisions (name, regionId) VALUES(?, ?)");
             //Region region = new Region();
             preparedStatement.setString(1, division.getName());
-            preparedStatement.setInt(2, region.getId());
+
+            preparedStatement.setObject(2, division.getRegion().getId());
             
             int temp = preparedStatement.executeUpdate();
 
@@ -65,10 +63,10 @@ public class DivisionDAO {
 
     }
 
-    public boolean delete(Integer Id) {
+    public boolean delete(Integer id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM tb_m_divisions WHERE id = ?");
-            preparedStatement.setInt(1, Id);
+            preparedStatement.setInt(1, id);
             //preparedStatement.execute();
             int temp = preparedStatement.executeUpdate();
 
@@ -83,10 +81,9 @@ public class DivisionDAO {
     public boolean update(Division division) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE tb_m_divisions SET name = ?, regionId = ? WHERE id = ? ");
-            preparedStatement.setString(1, "Operation");
 
-            Region region = new Region();
-            preparedStatement.setInt(2, 26);
+            preparedStatement.setString(1, division.getName());
+            preparedStatement.setInt(2, division.getRegion().getId());
             
             preparedStatement.setInt(3, division.getId());
             int temp = preparedStatement.executeUpdate();
@@ -99,12 +96,12 @@ public class DivisionDAO {
         return false;
     }
 
-    public Division getById(Integer Id) {
+    public Division getById(Integer id) {
         Division division = new Division();
         String query = "SELECT * FROM tb_m_divisions WHERE Id = ?";
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, Id);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -118,4 +115,28 @@ public class DivisionDAO {
         return division;
     }
     
+    public List<Region> getAllRegion(){
+        List<Region> regions = new ArrayList<>();
+
+        String query = "SELECT * FROM tb_m_regions";
+        try{
+            ResultSet resultSet = connection
+                        .prepareStatement(query)
+                        .executeQuery();
+
+            while (resultSet.next()) {
+                Region region = new Region();
+                region.setId(resultSet.getInt(1));
+                region.setName(resultSet.getString(2));
+                regions.add(region);
+
+                //division.setRegionName(resultSet.getString(3));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return regions;
+
+    }
+
 }

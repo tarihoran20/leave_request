@@ -5,21 +5,13 @@
     <body>
 
         <div class="container" style="width: 500; float: left;">
-            <div>
-                <a
-                class= "btn btn-outline-primary"
-                style="margin-bottom: 10px; margin-top: 10px;"
-                th:href="@{/division}"
-                >
-                Division
-            </a>
-            </div>
+            
             <a
                 class= "btn btn-primary"
                 style="margin-bottom: 10px; margin-top: 10px; color:aquamarine;"
-                th:href="@{/region/form}"
+                th:href="@{/role/form}"
                 >
-                Create New Region
+                Create New Role
             </a>
 
             <table class="table table-bordered">
@@ -29,16 +21,18 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Level</th>
                     <th colspan="2" style="text-align: center;";>Action</th>
                 </tr>
                 <tbody>
-                    <tr th:each="region : ${regions}">
-                        <td th:text="${region.Id}"></td>
-                        <td th:text="${region.Name}"></td>
+                    <tr th:each="role : ${roles}">
+                        <td th:text="${role.Id}"></td>
+                        <td th:text="${role.Name}"></td>
+                        <td th:text="${role.Level}"></td>
                         <td>
                             <a
                                 class= "btn btn-warning"
-                                th:href="@{/region/form/{Id}(Id=${region.Id})}"
+                                th:href="@{/role/form/{id}(id=${role.Id})}"
                                 
                                 >
                                 Edit
@@ -51,7 +45,7 @@
                             </a> -->
                         </td>
                         <td>
-                            <form th:action="@{/region/delete/{id}(id=${region.Id})}" th:method="post" style="float: left; margin-left: 10;">
+                            <form th:action="@{/role/delete/{id}(id=${role.Id})}" th:method="post" style="float: left; margin-left: 10;">
                                 <button type="submit" class="btn btn-danger">
                                     
                                     Delete

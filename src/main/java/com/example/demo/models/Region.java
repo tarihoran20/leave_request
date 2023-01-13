@@ -29,6 +29,4 @@ public class Region {
         return Name;
     }
 
-    // @OneToMany(mappedBy = "region")
-    // Set<RegionDivision> regdiv;
 }

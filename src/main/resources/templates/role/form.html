@@ -6,13 +6,13 @@
         
         <div class="container" style="width: 500; float: left;">
             <form
-                th:action = "@{/region/save}"
+                th:action = "@{/role/save}"
                 method = "post"
-                th:object="${region}"
+                th:object="${role}"
                 
             >
                 <div class="form-group" hidden>
-                    <label for="Id" class="col-form-label">Region Id</label>
+                    <label for="Id" class="col-form-label">Role Id</label>
                     <input 
                         type="text"
                         class="form-control" id="Id" 
@@ -20,11 +20,18 @@
                          />
                 </div>
                 <div class="form-group" col-md-4>
-                    <label for="Name" class="col-form-label">Region Name</label>
+                    <label for="Name" class="col-form-label">Role Name</label>
                     <input 
                         type="text"
                         class="form-control" id="Name" 
                         th:field="*{Name}"/>
+                </div>
+                <div class="form-group" col-md-4>
+                    <label for="Level" class="col-form-label">Level</label>
+                    <input 
+                        type="text"
+                        class="form-control" id="Level" 
+                        th:field="*{Level}"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
 

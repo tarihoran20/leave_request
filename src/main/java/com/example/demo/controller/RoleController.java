@@ -8,42 +8,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.models.Region;
-import com.example.demo.services.RegionService;
+import com.example.demo.models.Role;
+import com.example.demo.services.RoleService;
 
 @Controller
-@RequestMapping("region")
-public class RegionController {
-    //private RegionDAO rdao = new RegionDAO(DbConnection.getConnection());
+@RequestMapping("role")
+public class RoleController {
 
     @Autowired
-    private RegionService regionService;
+    private RoleService roleService;
 
-    // Get Data
     @GetMapping
     public String index(Model model) {
-        //Object region = rdao.getAll();
-        model.addAttribute("regions", regionService.getAll());
-        return "region/index";
-    }
-
-    @PostMapping("save") // POST FOR INSERT AND UPDATE
-    public String save(Region region){
-        Boolean result = regionService.save(region);
-        
-        if(result){
-            return "redirect:/region";
-        } else {
-            return "region/form";
-        }
+        model.addAttribute("roles", roleService.getAll());
+        return "role/index";
     }
 
     @PostMapping(value = {"delete/{id}"}) //DELETE USING POST MAPPING
     public String delete(@PathVariable Integer id){
-        Boolean result = regionService.delete(id);
+        Boolean result = roleService.delete(id);
 
         if(result){
-            return "redirect:/region";
+            return "redirect:/role";
         } else {
             return "delete failed";
         }
@@ -52,11 +38,23 @@ public class RegionController {
     @GetMapping(value = {"form", "form/{id}"}) //GET FOR INSERT AND EDIT GET BY ID TO SAME FORM
     public String form(@PathVariable(required = false) Integer id, Model model){
         if (id != null) {
-            model.addAttribute("region", regionService.getById(id));
+            model.addAttribute("role", roleService.getById(id));
         } else {
-            model.addAttribute("region", new Region());
+            model.addAttribute("role", new Role());
         }
 
-        return "region/form";
+        return "role/form";
     }
+
+    @PostMapping("save") // POST FOR INSERT AND UPDATE
+    public String save(Role role){
+        Boolean result = roleService.save(role);
+        
+        if(result){
+            return "redirect:/role";
+        } else {
+            return "role/form";
+        }
+    }
+
 }

@@ -5,13 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_m_divisions")
-public class Division {
+@Table(name = "tb_m_role")
+public class Role {
 
     @Id
     @Column(name = "id")
@@ -20,33 +18,31 @@ public class Division {
 
     @Column(name = "name", nullable = false)    
     private String Name;
-
-    @ManyToOne
-    @JoinColumn(name = "region_id")
-    private Region Region;
-
+    
+    @Column(name = "level", nullable = false)    
+    private String Level;
 
     public Integer getId() {
         return Id;
     }
+
     public void setId(Integer id) {
         Id = id;
     }
+
     public String getName() {
         return Name;
     }
+
     public void setName(String name) {
         Name = name;
     }
-    
-    public void setRegion(Region region) {
-        Region = region;
+
+    public String getLevel() {
+        return Level;
     }
 
-    public Region getRegion() {
-        return Region;
+    public void setLevel(String level) {
+        Level = level;
     }
-
-    
-    
 }

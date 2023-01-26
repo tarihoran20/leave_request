@@ -6,32 +6,32 @@
         
         <div class="container" style="width: 500; float: left;">
             <form
-                th:action = "@{/role/save}"
+                th:action = "@{/leave/save}"
                 method = "post"
-                th:object="${role}"
+                th:object="${leave}"
                 
             >
                 <div class="form-group" hidden>
-                    <label for="id" class="col-form-label">Role id</label>
+                    <label for="Id" class="col-form-label">Leave Id</label>
                     <input 
                         type="text"
-                        class="form-control" id="Id" 
+                        class="form-control" id="id" 
                         th:field="*{id}"
                          />
                 </div>
                 <div class="form-group" col-md-4>
-                    <label for="name" class="col-form-label">Role Name</label>
+                    <label for="name" class="col-form-label">Leave Name</label>
                     <input 
                         type="text"
                         class="form-control" id="name" 
                         th:field="*{name}"/>
                 </div>
                 <div class="form-group" col-md-4>
-                    <label for="level" class="col-form-label">Level</label>
+                    <label for="days" class="col-form-label">Leave Days</label>
                     <input 
                         type="text"
-                        class="form-control" id="level" 
-                        th:field="*{level}"/>
+                        class="form-control" id="days" 
+                        th:field="*{days}"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
 

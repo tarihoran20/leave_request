@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container" style="width: 400; float: left; margin-top: 10;">
+            <div>
+                <a
+                class= "btn btn-primary"
+                style="margin-bottom: 10px; margin-top: 10px; color:aquamarine;"
+                th:href="@{/user/form}"
+                >
+                Register
+            </a>
+            </div>
+            
+            <h1>form login</h1>
+            <div>
+                <form
+                th:action= "@{/usermanagement/loginconfirm}"
+                method="post"
+                th:object="${user}">
+
+                <div class="form-group">
+                    <label for="Email" class="col-form-label">Email</label>
+                    <input
+                        type="hidden"
+                        class="form-control"
+                        id="Email"
+                        th:field="${employee.Email}">
+                </div>
+                <div class="form-group">
+                    <label for="Password" class="col-form-label">Password</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        th:field="*{Password}"
+                        >
+                </div>
+                <div>
+                    <a href=""
+                    th:href="@{/usermanagement/changepassword}"
+                    >change password</a>
+                </div>
+                <div style="margin-top: 5;">
+                    <button type="submit" class="btn btn-primary">
+                        Login
+                    </button>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

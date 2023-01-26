@@ -1,0 +1,145 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container" style="width: 400; float: left; margin-top: 10;">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a href=""
+                    th:href="@{/division}"
+                    class=""
+                    type="button"
+                    >Division  
+                </a>
+                <br>
+                <a href=""
+                    th:href="@{/employee}"
+                    class=""
+                    type="button"
+                    >Employee  
+                </a>
+                <br>
+                <a href=""
+                    th:href="@{/request/form}"
+                    class=""
+                    type="button"
+                    >Request  
+                </a>
+            </div>
+            <!-- <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary" th:href="@{/division}">Division</button>
+                <button type="button" class="btn btn-secondary" th:href="@{/region}">Region</button>
+                <button type="button" class="btn btn-secondary" th:href="@{/employee}">Employee</button>
+            </div> -->
+            <div>
+                <h3>
+                    This is Dashboard
+               </h3>
+            </div>
+            <!-- <div th:object="${employee}">
+                <div class="form-group" >
+                    <label for="nik" class="col-form-label">NIK</label>
+                    <input 
+                        type="text"
+                        class="form-control"
+                        id="nik"
+                        //th:field="*{nik}"
+                        >
+                </div> -->
+
+           
+
+            <!-- <form
+                th:action= "@{/employee/save}"
+                method="post"
+                th:object="${employee}"
+                >
+                
+                    <div class="form-group" hidden>
+                        <label for="id" class="col-form-label">ID</label>
+                        <input 
+                            type="text"
+                            class="form-control"
+                            id="id"
+                            th:field="*{id}">
+                    </div>
+                    <div class="form-group">
+                        <label for="nik" class="col-form-label">NIK</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="nik"
+                            th:field="*{nik}">
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname" class="col-form-label">Fullname</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="fullname"
+                            th:field="*{fullname}">
+                    </div>
+                      
+                    <div style="margin-top: 5;">
+                        <button type="submit" class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+            </form> -->
+
+            <div class="container">
+                <h1 th:each="user : ${users}">
+                    Username: 
+                    <h2 th:text="${user.employee.fullname}"></h2>
+                </h1>
+                <table class="table">
+                    <tr>
+                        <th>ID Employee</th>
+                        <th>NIK</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th>Join Date</th>
+                        <th>Remaining Leave</th>
+                    </tr>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.employee.id}"></td>
+                            <td th:text="${user.employee.nik}"></td>
+                            <td th:text="${user.employee.fullname}"></td>
+                            <td th:text="${user.employee.email}"></td>
+                            <td th:text="${user.employee.phone_number}"></td>
+                            <td th:text="${user.employee.address}"></td>
+                            <td th:text="${user.employee.join_date}"></td>
+                            <td th:text="${user.employee.remaining_leave}"></td>
+                           
+                          
+                        </tr>
+           
+        </div>
+
+        <!-- <table class="table">
+            <tr>
+                <th colspan="5" style="text-align: center;">Hai</th>
+            </tr>
+            <tr>
+                <th>ID</th>
+                <th>Fullname</th>
+                <th>Role</th>
+                <th colspan="2" style="text-align: center;">Action</th>
+            </tr>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.employee.id}"></td>
+                    <td th:text="${user.employee.fullname}"></td>
+                    <td th:text="${user.role.name}"></td>
+
+                </tr>
+            </tbody>
+
+        </table> -->
+
+    </div>
+    </body>
+</html>

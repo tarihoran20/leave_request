@@ -6,40 +6,58 @@
 
         <div class="container" style="width: auto; float: left; margin-top: 15;">
             <div>
-                <a
+                <!-- <a
                 class= "btn btn-primary"
                 style="margin-bottom: 10px; margin-top: 10px; color:aquamarine;"
-                th:href="@{/employee/form}"
+                th:href="@{/usermanagement/register}"
                 >
                 Register
-            </a>
+            </a> -->
+            <h3 style="text-align: center;">Employee</h3>
             </div>
 
             <table class="table table-bordered">
-                <tr>
+                <!-- <tr>
                     <th colspan="5" style="text-align: center;">Employee</th>
-                </tr>
+                </tr> -->
                 <tr>
                     <th>ID</th>
                     <th>Full Name</th>
                     <th>Email</th>
-                    <th>Birth Date</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                    <th>Join Date</th>
+                    <th>Remaining Leave</th>
+                    <th>Division</th>
                     <th>Role</th>
                     
                 </tr>
                 <tbody>
-                    <tr th:each="employee : ${employees}">
+                    <!-- <tr th:each="employee : ${employees}">
                         <td th:text="${employee.Id}"></td>
                         <td th:text="${employee.FullName}"></td>
                         <td th:text="${employee.Email}"></td>
                         <td th:text="${employee.BirthDate}"></td>
                         <td th:text="${employee.user.role.Name}"></td>
+                    </tr> -->
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.employee.id}"></td>
+                        <td th:text="${user.employee.fullname}"></td>
+                        <td th:text="${user.employee.email}"></td>
+                        <td th:text="${user.employee.phone_number}"></td>
+                        <td th:text="${user.employee.address}"></td>
+                        <td th:text="${user.employee.join_date}"></td>
+                        <td th:text="${user.employee.remaining_leave}"></td>
+                        <!-- <td th:text="${user.employee.division.name}"></td> -->
+                        <td th:text="${user.role.name}"></td>
 
                         
                     </tr>
+                    
                 </tbody>
             </table>
         </div>
+        
     </body>
 
 </html>

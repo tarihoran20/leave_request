@@ -10,23 +10,31 @@
                 th:object="${division}"
                 >
                     <div class="form-group" hidden>
-                        <label for="Id" class="col-form-label">Division Id</label>
+                        <label for="id" class="col-form-label">Division Id</label>
                         <input 
                             type="text"
                             class="form-control"
-                            id="divisionId"
-                            th:field="*{Id}">
+                            id="id"
+                            th:field="*{id}">
                     </div>
                     <div class="form-group">
-                        <label for="Name" class="col-form-label">Division Name</label>
+                        <label for="name" class="col-form-label">Division Name</label>
                         <input
                             type="text"
                             class="form-control"
-                            id="Name"
-                            th:field="*{Name}">
+                            id="name"
+                            th:field="*{name}">
+                    </div>
+                    <div class="form-group">
+                        <label for="manager" class="col-form-label">Manager</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="manager"
+                            th:field="*{manager}">
                     </div>
 
-                    <div class="input-group mb-3">
+                    <!-- <div class="input-group mb-3">
                         <select class="custom-select" id="Id" th:field="*{region.Id}">
                           
                           <option th:each="region : ${regions}" th:text="${region.Name}" th:value="${region.Id}" th:selected="*{region == region.Name}"></option>
@@ -34,7 +42,7 @@
                         <div class="input-group-append">
                           <label class="input-group-text" for="inputGroupSelect02" th:field="*{region.Name}">Options</label>
                         </div>
-                      </div>
+                      </div> -->
                       
                     <div style="margin-top: 5;">
                         <button type="submit" class="btn btn-primary">

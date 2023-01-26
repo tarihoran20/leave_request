@@ -4,7 +4,7 @@
     </head>
     <body>
         <div class="container" style="width: 600; float: left;">
-            <div>
+            <!-- <div>
                 <a
                 class= "btn btn-outline-primary"
                 style="margin-bottom: 10px; margin-top: 10px;"
@@ -12,7 +12,7 @@
                 >
                 Region
             </a>
-            </div>
+            </div> -->
             <a 
                 class = "btn btn-primary"
                 style="margin-bottom: 10px; margin-top: 10px; color:aquamarine;"
@@ -26,15 +26,15 @@
                 </tr>
                 <tr>
                     <th>ID</th>
-                    <th>Division</th>
-                    <th>Region</th>
+                    <th>Name</th>
+                    <th>Manager</th>
                     <th colspan="2" style="text-align: center;">Action</th>
                 </tr>
                 <tbody>
                     <tr th:each="division : ${divisions}">
-                        <td th:text="${division.Id}"></td>
-                        <td th:text="${division.Name}"></td>
-                        <td th:text="${division.region.Name}"></td>
+                        <td th:text="${division.id}"></td>
+                        <td th:text="${division.name}"></td>
+                        <td th:text="${division.manager}"></td>
                         <td>
                             <a
                                 class= "btn btn-warning"

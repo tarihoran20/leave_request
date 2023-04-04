@@ -36,6 +36,5 @@ public class LeaveServiceImpl implements LeaveService {
         leaveRepository.deleteById(id);
         return !leaveRepository.findById(id).isPresent();
     }
-
     
 }

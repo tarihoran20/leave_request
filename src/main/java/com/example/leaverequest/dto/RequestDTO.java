@@ -34,8 +34,6 @@ public class RequestDTO {
 
     private Integer employee_request_id;
 
-    
-
 
     public Integer getId() {
         return id;

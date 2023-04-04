@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
+import com.example.leaverequest.dto.ApprovalDTO;
 import com.example.leaverequest.dto.LoginDTO;
 import com.example.leaverequest.dto.RegisterDTO;
 import com.example.leaverequest.models.Employee;
@@ -18,6 +19,11 @@ public interface EmployeeService {
     public Employee getById(Integer id);
     public Boolean delete(Integer id);
     public Integer getIdEmployeeByEmail(String email);
+    public Employee getCurrentEmployee(String name);
+    public Integer getManagerIdByEmail(String email);
+    public Integer getEmployeeHrId();
     //public Employee findIdByEmail(String email);
+    public String getNameById(Integer id);
+    public List<Employee> getEmployeeBackupList(Integer employee_request_id);
 
 }

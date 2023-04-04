@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.leaverequest.dto.LoginDTO;
 import com.example.leaverequest.dto.RegisterDTO;
+import com.example.leaverequest.models.Division;
 import com.example.leaverequest.models.Employee;
 import com.example.leaverequest.models.Role;
 import com.example.leaverequest.models.User;
@@ -79,8 +80,11 @@ public class UserManagementController {
         employee.setPhone_number(registerDTO.getPhone_number());
         employee.setAddress(registerDTO.getAddress());
         employee.setJoin_date(registerDTO.getJoin_date());
-        employee.setRemaining_leave(registerDTO.getRemaining_leave());
-        employee.setDivision(registerDTO.getDivision());
+        employee.setRemaining_leave(12);
+
+        Division division = new Division();
+        division.setId(registerDTO.getDivision_id());
+        employee.setDivision(division);
         Boolean result = employeeService.save(employee);
 
         User user = new User();

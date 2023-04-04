@@ -14,5 +14,7 @@ public interface UserService {
     public User getById(Integer id);
     // public User findUserByPassword(String password);
     public void updatePasswordEmployee(Integer id, String Password);
-    
+    List<User> getAllDataEmployeeById(Integer employee_id);
+    User getAllDataEmployeeById2(Integer employee_id);
+    public Employee getDataEmployeeByEmployeeId(Integer employee_id);
 }

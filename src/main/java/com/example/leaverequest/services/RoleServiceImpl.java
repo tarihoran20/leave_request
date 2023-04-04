@@ -40,5 +40,10 @@ public class RoleServiceImpl implements RoleService{
     public int getLevelById() {
         return roleRepository.getMaxLevelById();
     }
+
+    @Override
+    public String getRoleNameByEmployeeId(Integer id){
+        return roleRepository.getRoleNameByEmployeeId(id);
+    }
     
 }

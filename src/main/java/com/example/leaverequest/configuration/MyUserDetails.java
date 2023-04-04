@@ -61,12 +61,18 @@ public class MyUserDetails implements UserDetails, UserDetailsService {
         return password;
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.example.leaverequest.models.Employee data = employeeRepository.loginEmployee(username);
         // com.example.leaverequest.models.User data = employeeRepository.loginUser(username);
         //return new User(data.getEmail(), data.getUser().getPassword(), getAuthorities());
-        return new MyUserDetails(data);
+        // return new MyUserDetails(data);
+        this.authority = new SimpleGrantedAuthority(data.getUser().getRole().getName());
+        this.username=data.getEmail();
+        this.password=data.getUser().getPassword();
+        // return new User(data.getEmail(), data.getUser().getPassword(), getAuthorities());
+        return new org.springframework.security.core.userdetails.User(data.getEmail(), data.getUser().getPassword(), getAuthorities());
     }
 
     @Override
@@ -93,6 +99,7 @@ public class MyUserDetails implements UserDetails, UserDetailsService {
     public boolean isEnabled() {
         return true;
     }
+
 
     
 }

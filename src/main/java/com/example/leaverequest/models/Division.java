@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,12 +22,13 @@ public class Division {
     @Column(name = "name", nullable = false)    
     private String name;
 
-    @Column(name = "manager_id", nullable = false)    
-    private Integer manager_id;
+    // @Column(name = "manager_id", nullable = false)    
+    // private Integer manager_id;
 
-    // @ManyToOne
-    // @JoinColumn(name = "manager")
-    // private Employee employee;
+
+    @OneToOne
+    @JoinColumn(name = "manager_id")
+    private Employee employee;
 
     public Integer getId() {
         return id;
@@ -44,23 +46,23 @@ public class Division {
         this.name = name;
     }
 
-    public Integer getManager_id() {
-        return manager_id;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setManager_id(Integer manager_id) {
-        this.manager_id = manager_id;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
+
+    // public Integer getManager_id() {
+    //     return manager_id;
+    // }
+
+    // public void setManager_id(Integer manager_id) {
+    //     this.manager_id = manager_id;
+    // }
 
     
-
-    // public Employee getEmployee() {
-    //     return employee;
-    // }
-
-    // public void setEmployee(Employee employee) {
-    //     this.employee = employee;
-    // }
 
     
     

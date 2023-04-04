@@ -83,5 +83,21 @@ public class UserServiceImpl implements UserService{
         userRepository.updatePasswordEmployee(id, Password);
     }
 
+    @Override
+    public List<User> getAllDataEmployeeById(Integer employee_id){
+        return userRepository.getAllDataEmployeeById(employee_id);
+    }
+
+    @Override
+    public Employee getDataEmployeeByEmployeeId(Integer employee_id) {
+        return employeeRepository.getDataEmployeeByEmployeeId(employee_id);
+    }
+
+    @Override
+    public User getAllDataEmployeeById2(Integer employee_id) {
+
+        return userRepository.getAllDataEmployeeById2(employee_id);
+    }
+
     
 }

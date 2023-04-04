@@ -23,7 +23,7 @@ public class Status {
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
-    private Employee employee;
+    private Employee employee_id;
 
     @ManyToOne
     @JoinColumn(name = "request_id")
@@ -31,7 +31,7 @@ public class Status {
 
     @ManyToOne
     @JoinColumn(name = "employee_request_id")
-    private Employee employeeRequest;
+    private Employee employee_request_id;
 
     public Integer getId() {
         return id;
@@ -41,13 +41,7 @@ public class Status {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+   
 
     public Request getRequest() {
         return request;
@@ -73,13 +67,22 @@ public class Status {
         this.status = status;
     }
 
-    public Employee getEmployeeRequest() {
-        return employeeRequest;
+    public Employee getEmployee_id() {
+        return employee_id;
     }
 
-    public void setEmployeeRequest(Employee employeeRequest) {
-        this.employeeRequest = employeeRequest;
+    public void setEmployee_id(Employee employee_id) {
+        this.employee_id = employee_id;
     }
+
+    public Employee getEmployee_request_id() {
+        return employee_request_id;
+    }
+
+    public void setEmployee_request_id(Employee employee_request_id) {
+        this.employee_request_id = employee_request_id;
+    }
+    
 
     
     

@@ -1,9 +1,5 @@
 package com.example.leaverequest.models;
-
-import javax.persistence.Entity;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
+import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.*;
@@ -13,15 +9,15 @@ import javax.persistence.*;
 public class Request {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    // @DateTimeFormat(pattern = "yyyy-mm-dd")
     @Column(name = "start_date", nullable = false)    
     private LocalDate start_date;
 
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    // @DateTimeFormat(pattern = "yyyy-mm-dd")
     @Column(name = "end_date", nullable = false)    
     private LocalDate end_date;
 
@@ -35,11 +31,11 @@ public class Request {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "leave_id")
+    @JoinColumn(name = "leave_id", referencedColumnName = "id")
     private Leave leave;
 
     @ManyToOne
-    @JoinColumn(name = "employee_backup_id")
+    @JoinColumn(name = "employee_backup_id", referencedColumnName = "id")
     private Employee employee;
 
     public Integer getId() {
@@ -105,6 +101,7 @@ public class Request {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+
 
     
     

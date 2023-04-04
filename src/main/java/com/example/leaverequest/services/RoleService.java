@@ -10,5 +10,6 @@ public interface RoleService {
     public Boolean save(Role role);
     public Boolean delete (Integer id);
     public int getLevelById();
+    public String getRoleNameByEmployeeId(Integer id);
     
 }
